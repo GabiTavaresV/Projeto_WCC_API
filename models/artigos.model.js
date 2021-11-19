@@ -1,7 +1,10 @@
+// model da tabela de artigos
+
+//titulo, descrição, publicado
+
 module.exports = (sequelizeDatabase, Sequelize) => {
-    
-    const Artigo = sequelizeDatabase.define("artigos",{
-        titilo: {
+    const Artigo = sequelizeDatabase.define("artigos", {
+        titulo: {
             type: Sequelize.STRING
         },
         descricao: {
@@ -10,8 +13,6 @@ module.exports = (sequelizeDatabase, Sequelize) => {
         publicado: {
             type: Sequelize.BOOLEAN
         }
-    
-        
     });
 
     return Artigo;
