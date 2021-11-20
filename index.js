@@ -15,7 +15,7 @@ database.sequelizeDatabase.sync();
    //console.log("Drop and re-sync db.");
 // });
 
-const router = require("./routes/artigos.routes");
+const router = require("./routes/artigos.routes.js");
 router(app);
 
 app.listen(port, function() {
