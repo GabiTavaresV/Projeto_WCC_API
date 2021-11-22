@@ -1,15 +1,28 @@
-const databaseConfig = require("../config/db.config.js");
-const Sequelize = require("sequelize");
+module.exports = (app) => {
+  const artigosController = require("../controllers/artigos.controller");
+  let router = require("express").Router();
 
-const sequelizeOptions = { dialect: databaseConfig.dialect };
-const sequelizeDatabase = new Sequelize(databaseConfig.connectionStringUrl, sequelizeOptions);
 
-const database = {
-  Sequelize: Sequelize,
-  sequelizeDatabase: sequelizeDatabase,
+
+router.post("/", artigosController.create);
+
+router.get("/", artigosController.findAll);
+
+router.get("/findByTitle", artigosController.findByTitle);
+
+router.get("/findById", artigosController.findById);
+
+router.get("/published", artigosController.findAllPublished);
+
+router.put("/:id", artigosController.update);
+
+router.put("/", artigosController.updateMany);
+
+router.delete("/", artigosController.deleteAll);
+
+router.delete("/:id", artigosController.delete);
+
+app.use("/articles", router);
 };
 
-const artigosModel = require("./artigos.model.js");
-database.artigos = artigosModel(sequelizeDatabase, Sequelize);
 
-module.exports = database;
